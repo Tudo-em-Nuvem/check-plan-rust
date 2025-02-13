@@ -14,14 +14,19 @@ fn main() {
     let column_cnum_cobranca = get_cnum_cobrancas();
     let column_cnum_omie = get_cnums_omie();
 
-    println!("Primeiros 6 itens de column_cnum_omie:");
-    for item in column_cnum_omie.itens.iter().take(6) {
-        println!("{:?}", item);
+    let mut missing_items = Vec::new();
+    for item in column_cnum_omie.itens {
+        if !column_cnum_cobranca.itens.contains(&item) {
+            missing_items.push(item);
+        }
     }
 
-    println!("Primeiros 6 itens de column_cnum_cobranca:");
-    for item in column_cnum_cobranca.itens.iter().take(6) {
-        println!("{:?}", item);
+    if missing_items.is_empty() {
+        println!("Nenhum item faltante");
+    } else {
+        println!("Itens faltantes: ");
+        for item in missing_items {
+            println!("{}", item);
     }
 }
 
@@ -90,4 +95,5 @@ fn get_cnum_cobrancas() -> Column {
     }
 
     column_cnum_asaas
+    }
 }
