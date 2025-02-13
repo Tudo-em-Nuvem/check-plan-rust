@@ -1,0 +1,10 @@
+[package]
+name = "codespaces-blank"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = "0.4.39"
+excelize = "0.0.1"
+polars = { version = "0.46.0", features = ["lazy"] }
+regex = "1"
