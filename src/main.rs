@@ -1,10 +1,17 @@
 use std::io::{stdin, stdout, Write};
+mod utils;
+use utils::faturamento::gerar_planilha_faturamento;
 
 fn main() {
-    let message = String::from("Escolha uma opção:
-    [1] Comparar colunas de duas planilhas\n");
-    let res = input(message);
-    println!("{}", res)
+    loop {
+        let message = String::from("
+Escolha uma opção:
+[1] - Gerar planilha de faturamento\n");
+
+        let option = input(String::from(message));
+        handling(option);
+    }
+    
 }
 
 fn input(question: String) -> String {
@@ -23,4 +30,16 @@ fn input(question: String) -> String {
     }
 
     s
+}
+
+fn handling(option: String) {
+    match option.as_str() {
+        "1" => {
+            println!("Gerando planilha de faturamento...");
+            gerar_planilha_faturamento();
+        }
+        _ => {
+            println!("Opção inválida. Tente novamente.");
+        }
+    }
 }
